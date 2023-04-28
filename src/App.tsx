@@ -2,13 +2,21 @@ import React from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
+import Counter10login from './features/counter/Counter10login';
+import JalLogin from './features/counter/JalLogin';
+
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        {/* ex3 */}
+        <Counter10login/>  
+        {/* ex5 */}
+        <JalLogin/>           
         <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
+        <Counter /> 
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>

@@ -4,15 +4,26 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
   decrement,
   increment,
+  increment3,                  //ex2 import this action from slicer.ts
   incrementByAmount,
   incrementAsync,
   incrementIfOdd,
   selectCount,
+  selectCount5,              //ex4 import this variable, and use useAppSelector below
 } from './counterSlice';
 import styles from './Counter.module.css';
 
+//note on ex5.2: we can use the jalSlice on other GUI.tsx's, see for example in the GUI Counter.tsx
+import {
+  login,
+  logout,
+  selectLogged
+} from './jalSlice';
+
 export function Counter() {
   const count = useAppSelector(selectCount);
+  const bigger5 = useAppSelector(selectCount5);
+  const isLogged = useAppSelector(selectLogged); //ex5.2
   const dispatch = useAppDispatch();
   const [incrementAmount, setIncrementAmount] = useState('2');
 
@@ -20,6 +31,9 @@ export function Counter() {
 
   return (
     <div>
+      {isLogged ?  <button onClick={() => dispatch(logout())}>LOGIN-ex5.2</button> : <button onClick={() => dispatch(login())}>LOGOUT-ex5.2</button>}
+      <br/>
+      {bigger5 ? 'True': 'False'}
       <div className={styles.row}>
         <button
           className={styles.button}
@@ -35,6 +49,14 @@ export function Counter() {
           onClick={() => dispatch(increment())}
         >
           +
+        </button>
+        <button                                //ex2
+          className={styles.button}
+          style={{backgroundColor: 'red'}}
+          aria-label="Increment value by 3"
+          onClick={() => dispatch(increment3())}
+        >
+          +++EX2
         </button>
       </div>
       <div className={styles.row}>
